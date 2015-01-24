@@ -26,8 +26,8 @@
 		</license>
 	</licenses>
 	<scm>
-		<connection>scm:svn:http://www.dayatang.com/svn/dayatang/maven/mojo/maven-hibernate3/trunk</connection>
-		<developerConnection>scm:svn:http://www.dayatang.com/svn/dayatang/maven/mojo/maven-hibernate3/trunk</developerConnection>
+		<connection>scm:svn:http://svn.dayatang.org/dayatang/maven/mojo/maven-hibernate3/trunk</connection>
+		<developerConnection>scm:svn:http://svn.dayatang.org/dayatang/maven/mojo/maven-hibernate3/trunk</developerConnection>
 	</scm>
 	<issueManagement>
 		<system>trac</system>
@@ -36,17 +36,15 @@
 
 	<distributionManagement>
 		<repository>
-			<id>dayatang.nexus.release</id>
+			<id>dayatang-releases</id>
 			<name>Dayatang release repository</name>
-			<url>dav:http://www.dayatang.com:8080/nexus/content/repositories/releases</url>
+			<url>dav:http://nexus.dayatang.org:8083/content/repositories/releases</url>
 		</repository>
 		<snapshotRepository>
-			<id>dayatang.nexus.snapshots</id>
+			<id>dayatang-snapshots</id>
 			<name>Dayatang snapshot repository</name>
-			<url>dav:http://www.dayatang.com:8080/nexus/content/repositories/snapshots</url>
+			<url>dav:http://nexus.dayatang.org:8083/content/repositories/snapshots</url>
 		</snapshotRepository>
-		<!-- <site> <id>dayatang-site</id> <name>Dayatang site</name> <url>dav:http://www.dayatang.com/projects/maven-hibernate3</url> 
-			</site> -->
 	</distributionManagement>
 
 	<developers>
@@ -86,7 +84,7 @@
 	<repositories>
 		<repository>
 			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/maven2/public-release</url>
+			<url>http://nexus.dayatang.org/content/groups/public-release</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -96,27 +94,7 @@
 		</repository>
 		<repository>
 			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/maven2/public-snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>jboss release</id>
-			<url>https://repository.jboss.org/nexus/content/groups/public</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>jboss snapshots</id>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots</url>
+			<url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -129,7 +107,7 @@
 	<pluginRepositories>
 		<pluginRepository>
 			<id>dayatang-releases</id>
-			<url>http://www.dayatang.com/maven2/public-release</url>
+			<url>http://nexus.dayatang.org/content/groups/public-release</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
@@ -139,22 +117,12 @@
 		</pluginRepository>
 		<pluginRepository>
 			<id>dayatang-snapshots</id>
-			<url>http://www.dayatang.com/maven2/public-snapshots</url>
+			<url>http://nexus.dayatang.org/content/groups/public-snapshots</url>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
 			<snapshots>
 				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>glassfish</id>
-			<url>http://download.java.net/maven/glassfish</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
