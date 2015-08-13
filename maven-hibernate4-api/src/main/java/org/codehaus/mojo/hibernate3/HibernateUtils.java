@@ -18,7 +18,7 @@ package org.codehaus.mojo.hibernate3;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.codehaus.plexus.util.FileUtils;
-import org.hibernate.util.ReflectHelper;
+import org.hibernate.internal.util.ReflectHelper;
 
 import java.io.File;
 

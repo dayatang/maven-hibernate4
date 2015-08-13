@@ -3,21 +3,21 @@
 
 	<parent>
 		<groupId>com.dayatang.maven.mojo</groupId>
-		<artifactId>maven-hibernate3</artifactId>
+		<artifactId>maven-hibernate4</artifactId>
 		<version>2.9-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>hibernate3-maven-plugin</artifactId>
+	<artifactId>hibernate4-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
-	<name>Hibernate3 Maven Plugin</name>
+	<name>Hibernate4 Maven Plugin</name>
 	<description>Maven plugin based on the hibernate-tools project.</description>
 	<prerequisites>
-		<maven>2.0.6</maven>
+		<maven>3.2.5</maven>
 	</prerequisites>
 	<dependencies>
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -41,7 +41,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.dayatang.maven.mojo</groupId>
-			<artifactId>maven-hibernate3-api</artifactId>
+			<artifactId>maven-hibernate4-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -50,19 +50,19 @@
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-project</artifactId>
+			<artifactId>maven-core</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.maven.shared</groupId>
+			<groupId>org.apache.maven.plugin-testing</groupId>
 			<artifactId>maven-plugin-testing-harness</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>hsqldb</groupId>
+			<groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -76,10 +76,11 @@
 	<build>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 				<executions>
 					<execution>
@@ -89,16 +90,18 @@
 							<goal>testCompile</goal>
 						</goals>
 						<configuration>
-							<source>1.5</source>
-							<target>1.5</target>
+							<source>1.6</source>
+							<target>1.6</target>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-plugin-plugin</artifactId>
+				<version>3.4</version>
 				<configuration>
-					<prefix>hibernate3</prefix>
+					<goalPrefix>hibernate4</goalPrefix>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -112,8 +115,8 @@
 			</activation>
 			<dependencies>
 				<dependency>
-					<groupId>com.dayatang.mojo.hibernate3</groupId>
-					<artifactId>maven-hibernate3-components-jdk14</artifactId>
+					<groupId>com.dayatang.maven.mojo</groupId>
+					<artifactId>maven-hibernate4-components-jdk14</artifactId>
 					<version>${project.version}</version>
 				</dependency>
 			</dependencies>
@@ -126,13 +129,13 @@
 			<dependencies>
 				<dependency>
 					<groupId>com.dayatang.maven.mojo</groupId>
-					<artifactId>maven-hibernate3-components-jdk14</artifactId>
+					<artifactId>maven-hibernate4-components-jdk14</artifactId>
 					<version>${project.version}</version>
 				</dependency>
 				<dependency>
 					<groupId>com.dayatang.maven.mojo</groupId>
-					<artifactId>maven-hibernate3-components-jdk15</artifactId>
-					<version>${project.parent.version}</version>
+					<artifactId>maven-hibernate4-components-jdk15</artifactId>
+					<version>${project.version}</version>
 				</dependency>
 			</dependencies>
 		</profile>

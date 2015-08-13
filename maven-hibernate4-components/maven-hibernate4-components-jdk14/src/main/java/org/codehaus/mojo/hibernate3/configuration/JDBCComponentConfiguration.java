@@ -1,13 +1,13 @@
 package org.codehaus.mojo.hibernate3.configuration;
 
+import org.codehaus.mojo.hibernate3.HibernateUtils;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.JDBCMetaDataConfiguration;
-import org.hibernate.cfg.reveng.ReverseEngineeringSettings;
-import org.hibernate.cfg.reveng.ReverseEngineeringStrategy;
 import org.hibernate.cfg.reveng.DefaultReverseEngineeringStrategy;
 import org.hibernate.cfg.reveng.OverrideRepository;
-import org.hibernate.util.ReflectHelper;
-import org.codehaus.mojo.hibernate3.HibernateUtils;
+import org.hibernate.cfg.reveng.ReverseEngineeringSettings;
+import org.hibernate.cfg.reveng.ReverseEngineeringStrategy;
+import org.hibernate.internal.util.ReflectHelper;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
@@ -97,7 +97,7 @@ public class JDBCComponentConfiguration
         {
             try
             {
-                Class clazz = ReflectHelper.classForName( reverseStrategy );
+                Class clazz = ReflectHelper.classForName(reverseStrategy);
                 //noinspection RedundantArrayCreation
                 Constructor constructor = clazz.getConstructor( new Class[]{ReverseEngineeringStrategy.class} );
                 //noinspection RedundantArrayCreation

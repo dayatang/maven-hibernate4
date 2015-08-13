@@ -3,25 +3,25 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.dayatang.maven.mojo</groupId>
-    <artifactId>maven-hibernate3</artifactId>
+    <artifactId>maven-hibernate4</artifactId>
     <version>2.9-SNAPSHOT</version>
   </parent>
 
   <packaging>pom</packaging>
-  <artifactId>maven-hibernate3-components</artifactId>
-  <name>Maven Hibernate3 Components</name>
+  <artifactId>maven-hibernate4-components</artifactId>
+  <name>Maven Hibernate4 Components</name>
 
   <dependencies>
     <dependency>
       <groupId>com.dayatang.maven.mojo</groupId>
-      <artifactId>maven-hibernate3-api</artifactId>
+      <artifactId>maven-hibernate4-api</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>
 
   <modules>
-    <module>maven-hibernate3-components-jdk14</module>
-    <module>maven-hibernate3-components-jdk15</module>
+    <module>maven-hibernate4-components-jdk14</module>
+    <module>maven-hibernate4-components-jdk15</module>
   </modules>
 
 </project>

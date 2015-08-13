@@ -1,29 +1,29 @@
 package org.codehaus.mojo.hibernate3.configuration;
 
-import org.hibernate.cfg.Configuration;
-import org.hibernate.util.ReflectHelper;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.model.Build;
+import javassist.bytecode.AnnotationsAttribute;
+import javassist.bytecode.ClassFile;
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.model.Build;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugin.logging.Log;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.internal.util.ReflectHelper;
 import org.jboss.util.file.ArchiveBrowser;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Embeddable;
 import javax.persistence.PersistenceException;
-import java.net.URL;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.util.List;
-import java.util.Iterator;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.io.InputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.File;
-
-import javassist.bytecode.ClassFile;
-import javassist.bytecode.AnnotationsAttribute;
+import java.util.Iterator;
+import java.util.List;
 
 public class AnnotationComponentConfiguration extends AbstractComponentConfiguration {
 	// ------------------------ INTERFACE METHODS ------------------------
@@ -41,29 +41,24 @@ public class AnnotationComponentConfiguration extends AbstractComponentConfigura
 	protected Configuration createConfiguration() {
 		// retrievethe Build object
 		Build build = getExporterMojo().getProject().getBuild();
+		Log log = getExporterMojo().getLog();
 
 		// now create an empty arraylist that is going to hold our entities
 		List<String> entities = new ArrayList<String>();
-
 		try {
 			if (getExporterMojo().getComponentProperty("scan-classes", false)) {
-				scanForClasses(new File(build.getOutputDirectory()), entities);
-				scanForClasses(new File(build.getTestOutputDirectory()), entities);
+				File outputDirectory = new File(build.getOutputDirectory());
+				entities.addAll(new PersistenceClassScanner(log).scanDir(outputDirectory));
+				File testOutputDirectory = new File(build.getTestOutputDirectory());
+				entities.addAll(new PersistenceClassScanner(log).scanDir(testOutputDirectory));
 			}
 
 			if (getExporterMojo().getComponentProperty("scan-jars", false)) {
-				List<Artifact> artifacts = new ArrayList<Artifact>();
-				artifacts.addAll(getExporterMojo().getProject().getRuntimeArtifacts());
-				artifacts.addAll(getExporterMojo().getProject().getTestArtifacts());
-				for (Artifact a : artifacts) {
-					File artifactFile = a.getFile();
-					if (!artifactFile.isDirectory()) {
-						getExporterMojo().getLog().debug("[URL] " + artifactFile.toURI().toURL().toString());
-						scanForClasses(artifactFile, entities);
-					}
+				for (File jarFile : getJarFiles()) {
+					entities.addAll(new PersistenceClassScanner(log).scanJar(jarFile));
 				}
 			}
-		} catch (MalformedURLException e) {
+		} catch (Exception e) {
 			getExporterMojo().getLog().error(e.getMessage(), e);
 			return null;
 		}
@@ -74,61 +69,12 @@ public class AnnotationComponentConfiguration extends AbstractComponentConfigura
 		return configuration;
 	}
 
-	@SuppressWarnings("unchecked")
-	private void scanForClasses(File directoryOrJar, List<String> entities) throws MalformedURLException {
-		if (directoryOrJar.isDirectory() && (directoryOrJar.list() == null || directoryOrJar.list().length == 0)) {
-			return;
+	private List<File> getJarFiles() {
+		List<File> results = new ArrayList<File>();
+		for (Artifact artifact : getExporterMojo().getProject().getArtifacts()) {
+			results.add(artifact.getFile());
 		}
-		getExporterMojo().getLog().debug("[scanForClasses] " + directoryOrJar);
-		URL url = directoryOrJar.toURI().toURL();
-		Iterator<InputStream> it;
-		try {
-			it = ArchiveBrowser.getBrowser(url, new ArchiveBrowser.Filter() {
-				public boolean accept(String filename) {
-					return filename.endsWith(".class");
-				}
-			});
-		} catch (RuntimeException e) {
-			throw new RuntimeException("error trying to scan <directory or jar>: " + url.toString(), e);
-		}
-
-		// need to look into every entry in the archive to see if anybody
-		// has tags
-		// defined.
-		while (it.hasNext()) {
-			InputStream stream = (InputStream) it.next();
-			DataInputStream dstream = new DataInputStream(stream);
-			ClassFile cf = null;
-			try {
-				try {
-					cf = new ClassFile(dstream);
-				} finally {
-					dstream.close();
-					stream.close();
-				}
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-
-			AnnotationsAttribute visible = (AnnotationsAttribute) cf.getAttribute(AnnotationsAttribute.visibleTag);
-			if (visible != null) {
-				boolean isEntity = visible.getAnnotation(Entity.class.getName()) != null;
-				if (isEntity) {
-					getExporterMojo().getLog().info("found EJB3 Entity bean: " + cf.getName());
-					entities.add(cf.getName());
-				}
-				boolean isEmbeddable = visible.getAnnotation(Embeddable.class.getName()) != null;
-				if (isEmbeddable) {
-					getExporterMojo().getLog().info("found EJB3 @Embeddable: " + cf.getName());
-					entities.add(cf.getName());
-				}
-				boolean isEmbeddableSuperclass = visible.getAnnotation(MappedSuperclass.class.getName()) != null;
-				if (isEmbeddableSuperclass) {
-					getExporterMojo().getLog().info("found EJB3 @MappedSuperclass: " + cf.getName());
-					entities.add(cf.getName());
-				}
-			}
-		}
+		return results;
 	}
 
 	private void addNamedAnnotatedClasses(Configuration cfg, Collection<String> classNames) {

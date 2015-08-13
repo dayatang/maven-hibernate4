@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.dayatang.maven.mojo</groupId>
-    <artifactId>maven-hibernate3-components</artifactId>
+    <artifactId>maven-hibernate4-components</artifactId>
     <version>2.9-SNAPSHOT</version>
   </parent>
 
-  <artifactId>maven-hibernate3-components-jdk15</artifactId>
-  <name>Maven Hibernate3 Implementation - JDK15</name>
+  <artifactId>maven-hibernate4-components-jdk15</artifactId>
+  <name>Maven Hibernate4 Implementation - JDK15</name>
 
   <dependencies>
     <dependency>
@@ -24,10 +24,6 @@
       <artifactId>maven-artifact</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
     </dependency>
@@ -36,14 +32,14 @@
       <artifactId>hibernate-entitymanager</artifactId>
     </dependency>
     <dependency>
-      <groupId>jboss</groupId>
-      <artifactId>jboss-common</artifactId>
-      <version>4.0.2</version>
+      <groupId>org.jboss</groupId>
+      <artifactId>jboss-common-core</artifactId>
+      <version>2.5.0.Final</version>
     </dependency>
     <dependency>
-      <groupId>javassist</groupId>
+      <groupId>org.javassist</groupId>
       <artifactId>javassist</artifactId>
-      <version>3.12.1.GA</version>
+      <version>3.20.0-GA</version>
     </dependency>
   </dependencies>
   <build>
@@ -51,8 +47,8 @@
 	<plugin>
 		<artifactId>maven-compiler-plugin</artifactId>
 		<configuration>
-			<source>1.5</source>
-			<target>1.5</target>
+			<source>1.6</source>
+			<target>1.6</target>
 		</configuration>
 	</plugin>
     </plugins>

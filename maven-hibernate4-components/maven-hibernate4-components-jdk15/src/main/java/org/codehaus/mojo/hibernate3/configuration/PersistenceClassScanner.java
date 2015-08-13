@@ -35,11 +35,11 @@ public class PersistenceClassScanner {
         this.log = log;
     }
 
-    public List<String> scanDirectory(String dir) {
-        return scanDirectory(new File(dir));
+    public List<String> scanDir(String dir) {
+        return scanDir(new File(dir));
     }
 
-    public List<String> scanDirectory(File dir) {
+    public List<String> scanDir(File dir) {
         if (!dir.exists()) {
             throw new IllegalArgumentException("Path '" + dir + "' not exists!");
         }
@@ -49,6 +49,7 @@ public class PersistenceClassScanner {
         if (!(dir.canRead() && dir.canExecute())) {
             throw new SecurityException("Path '" + dir + "' not need excute permission!");
         }
+        log.debug("[scanDirForClasses] " + dir);
         return getClasses(new DirectoryArchiveBrowser(dir, filter));
     }
 
@@ -56,6 +57,7 @@ public class PersistenceClassScanner {
         if (jarFile == null) {
             throw new IllegalArgumentException("Jar is null!");
         }
+        log.debug("[scanJarForClasses] " + jarFile);
         return getClasses(new JarArchiveBrowser(jarFile, filter));
     }
 

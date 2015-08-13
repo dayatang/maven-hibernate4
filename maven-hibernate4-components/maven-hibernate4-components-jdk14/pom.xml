@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.dayatang.maven.mojo</groupId>
-    <artifactId>maven-hibernate3-components</artifactId>
+    <artifactId>maven-hibernate4-components</artifactId>
     <version>2.9-SNAPSHOT</version>
   </parent>
 
-  <artifactId>maven-hibernate3-components-jdk14</artifactId>
-  <name>Maven Hibernate3 Implementation - JDK14</name>
+  <artifactId>maven-hibernate4-components-jdk14</artifactId>
+  <name>Maven Hibernate4 Implementation - JDK14</name>
   
   <dependencies>
     <dependency>
@@ -18,10 +18,6 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-tools</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
