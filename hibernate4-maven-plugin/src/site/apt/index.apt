@@ -14,17 +14,17 @@ Maven Hibernate3 Plugin
 
   The Maven Hibernate3 Plugin has seven goals.
 
-  * {{{hbm2cfgxml-mojo.html}hibernate3:hbm2cfgxml}}: Generates hibernate.cfg.xml
+  * {{{hbm2cfgxml-mojo.html}hibernate4:hbm2cfgxml}}: Generates hibernate.cfg.xml
   
-  * {{{hbm2ddl-mojo.html}hibernate3:hbm2ddl}}: Generates database schema.
+  * {{{hbm2ddl-mojo.html}hibernate4:hbm2ddl}}: Generates database schema.
   
-  * {{{hbm2doc-mojo.html}hibernate3:hbm2doc}}: Generates HTML documentation for the database schema.
+  * {{{hbm2doc-mojo.html}hibernate4:hbm2doc}}: Generates HTML documentation for the database schema.
   
-  * {{{hbm2hbmxml-mojo.html}hibernate3:hbm2hbmxml}}: Generates a set of hbm.xml files
+  * {{{hbm2hbmxml-mojo.html}hibernate4:hbm2hbmxml}}: Generates a set of hbm.xml files
   
-  * {{{hbm2java-mojo.html}hibernate3:hbm2java}}: Generates Java classes from set of *.hbm.xml files
+  * {{{hbm2java-mojo.html}hibernate4:hbm2java}}: Generates Java classes from set of *.hbm.xml files
   
-  * {{{hbmtemplate-mojo.html}hibernate3:hbmtemplate}}: Renders arbitrary templates against Hibernate Mapping information.
+  * {{{hbmtemplate-mojo.html}hibernate4:hbmtemplate}}: Renders arbitrary templates against Hibernate Mapping information.
 
   
   []

@@ -11,18 +11,18 @@ Component Configuration
 *-------------+--------------------------------------+---------------------------------+
 | <<name>>    | <<outputDirectory>>                  | <<implementation>>
 *-------------+--------------------------------------+---------------------------------+
-| hbmtemplate | target/hibernate3/generic            | jdbcconfiguration
+| hbmtemplate | target/hibernate4/generic            | jdbcconfiguration
 *-------------+--------------------------------------+---------------------------------+
-| hbm2cfgxml  | target/hibernate3/generated-mappings | jdbcconfiguration
+| hbm2cfgxml  | target/hibernate4/generated-mappings | jdbcconfiguration
 *-------------+--------------------------------------+---------------------------------+
-| hbm2ddl     | target/hibernate3/sql                | configuration (jdk14)
+| hbm2ddl     | target/hibernate4/sql                | configuration (jdk14)
 |             |                                      | annotationconfiguration (jdk15)
 *-------------+--------------------------------------+---------------------------------+
-| hbm2doc     | target/hibernate3/javadoc            | configuration (jdk14)
+| hbm2doc     | target/hibernate4/javadoc            | configuration (jdk14)
 |             |                                      | annotationconfiguration (jdk15)
 *-------------+--------------------------------------+---------------------------------+
-| hbm2hbmxml  | target/hibernate3/generated-mappings | jdbcconfiguration
+| hbm2hbmxml  | target/hibernate4/generated-mappings | jdbcconfiguration
 *-------------+--------------------------------------+---------------------------------+
-| hbm2java    | target/hibernate3/generated-sources  | configuration (jdk14)
+| hbm2java    | target/hibernate4/generated-sources  | configuration (jdk14)
 |             |                                      | annotationconfiguration (jdk15) 
 *-------------+--------------------------------------+---------------------------------+

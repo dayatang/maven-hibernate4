@@ -16,6 +16,11 @@
 	</prerequisites>
 	<dependencies>
 		<dependency>
+			<groupId>com.dayatang.maven.mojo</groupId>
+			<artifactId>maven-hibernate4-components</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 		</dependency>
@@ -106,39 +111,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<profiles>
-		<profile>
-			<id>jdk14</id>
-			<activation>
-				<jdk>1.4</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>com.dayatang.maven.mojo</groupId>
-					<artifactId>maven-hibernate4-components-jdk14</artifactId>
-					<version>${project.version}</version>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>jdk15</id>
-			<activation>
-				<jdk>!1.4</jdk>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>com.dayatang.maven.mojo</groupId>
-					<artifactId>maven-hibernate4-components-jdk14</artifactId>
-					<version>${project.version}</version>
-				</dependency>
-				<dependency>
-					<groupId>com.dayatang.maven.mojo</groupId>
-					<artifactId>maven-hibernate4-components-jdk15</artifactId>
-					<version>${project.version}</version>
-				</dependency>
-			</dependencies>
-		</profile>
-	</profiles>
-
 </project>

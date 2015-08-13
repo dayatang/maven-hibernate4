@@ -24,12 +24,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.codehaus.mojo.hibernate3</groupId>
-    <artifactId>maven-hibernate3</artifactId>
+    <groupId>org.codehaus.mojo.hibernate4</groupId>
+    <artifactId>maven-hibernate4</artifactId>
     <version>2.2-SNAPSHOT</version>
   </parent>
   
-  <groupId>org.codehaus.mojo.hibernate3.it</groupId>
+  <groupId>org.codehaus.mojo.hibernate4.it</groupId>
   <artifactId>jpa-namingstrategy</artifactId>
   <version>testing</version>
 
@@ -57,7 +57,7 @@
 
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
-        <artifactId>hibernate3-maven-plugin</artifactId>
+        <artifactId>hibernate4-maven-plugin</artifactId>
         <version>testing</version>
         <configuration>
           <components>

@@ -1,7 +1,7 @@
 <verifications>
   <files>
     <file>
-      <location>target/hibernate3/generic/it/Person.quote</location>
+      <location>target/hibernate4/generic/it/Person.quote</location>
       <contains>pojo=Person</contains>
     </file>
   </files>
