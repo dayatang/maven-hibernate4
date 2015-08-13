@@ -1,7 +1,7 @@
 package org.codehaus.mojo.hibernate4.plugin;
 
 public final class Hbm2JavaMojoTest
-    extends AbstractHibernate3MojoTestCase
+    extends AbstractHibernate4MojoTestCase
 {
     public void testAnnotationMojoExecution()
         throws Exception

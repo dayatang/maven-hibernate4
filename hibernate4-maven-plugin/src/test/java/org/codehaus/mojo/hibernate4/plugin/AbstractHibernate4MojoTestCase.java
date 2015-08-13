@@ -7,7 +7,7 @@ import org.apache.maven.project.MavenProject;
 import org.codehaus.mojo.hibernate4.HibernateExporterMojo;
 import org.codehaus.plexus.util.FileUtils;
 
-public abstract class AbstractHibernate3MojoTestCase
+public abstract class AbstractHibernate4MojoTestCase
     extends AbstractMojoTestCase
 {
     protected boolean checkExists( String target )
